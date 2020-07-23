@@ -4,7 +4,7 @@ pipeline {
         stages {
               stage('Git Checkout'){
                  steps{
-                    git 'https://github.com/narulsa1/django-app'
+                    git 'https://github.com/narulsa1/djangoapp'
                  }
               }
 
