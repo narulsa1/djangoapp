@@ -39,4 +39,4 @@ logger = logging.getLogger(__name__)
 def index(request):
     # Send the Test!! log message to standard out
     logger.error("Test!!")
-    return HttpResponse("Hello logging world.")
+    return HttpResponse("Hello green world.")
