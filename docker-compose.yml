@@ -3,7 +3,7 @@ version: '3'
 services:
   django:
     build: .
-    image: django:1.0
+    image: django:${env.BUILD_NUMBER}
     restart: always
     env_file:
      - app.env
