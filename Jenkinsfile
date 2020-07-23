@@ -21,6 +21,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pswd', usernameVariable: 'username')]) {
                        sh "docker login -u ${username} -p ${pswd}"
                        sh "docker push snarula/djangoapp:${env.BUILD_NUMBER}"
+                    }      
                  }
               }
 
