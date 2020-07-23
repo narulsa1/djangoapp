@@ -18,7 +18,7 @@ pipeline {
 
               stage('Docker container') {
                  steps{
-                 sh "docker run -itd -p 8000:8000 -e  DJANGO_SUPERUSER_USERNAME=admin -e DJANGO_SUPERUSER_PASSWORD=sekret1 -e DJANGO_SUPERUSER_EMAIL=admin@example.com django-app:${env.BUILD_NUMBER}"
+                 sh "docker run -itd -p 8000:8000 -e  DJANGO_SUPERUSER_USERNAME=admin -e DJANGO_SUPERUSER_PASSWORD=sekret1 -e DJANGO_SUPERUSER_EMAIL=admin@example.com djangoapp:${env.BUILD_NUMBER}"
                  }
               }
 
