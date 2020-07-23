@@ -1,13 +1,17 @@
-# set the base image 
-FROM python:2.7
-#add project files to the usr/src/app folder
-ADD . /usr/src/app
-#set directoty where CMD will execute 
-WORKDIR /usr/src/app
-COPY requirements.txt ./
-# Get pip to download and install requirements:
+FROM python:3.7
+RUN apt-get update -y && apt-get install nginx -y 
+COPY nginx.default /etc/nginx/sites-available/default
+
+RUN  mkdir -p  /opt/app/app
+WORKDIR /opt/app
+COPY requirements.txt start-server.sh /opt/app/
+COPY app /opt/app/app
+
+# RUN python -m pip install --user --upgrade pip && python -m pip install --user virtualenv && python3 -m venv env 
 RUN pip install --no-cache-dir -r requirements.txt
-# Expose ports
-EXPOSE 8000
-# default command to execute    
-CMD exec gunicorn djangoapp.wsgi:application --bind 0.0.0.0:8000
+
+EXPOSE 8020
+
+RUN chown -R www-data:www-data /opt/app
+STOPSIGNAL SIGTERM
+CMD ["/opt/app/start-server.sh"]

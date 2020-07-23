@@ -1,3 +1,2 @@
-#requirements.txt
-Django==1.11.29
-gunicorn==19.6.0
+Django
+gunicorn

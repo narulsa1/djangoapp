@@ -1,2 +1,2 @@
-# djangoapp
-Deploy django app with docker
+# django-app
+django python app with docker
