@@ -31,7 +31,7 @@ pipeline {
 
               stage('Ansible Run') {
                  steps{
-                         sh "ansible-playbook ansible/deployapp.yaml --extra-vars TAG"
+                         sh "ansible-playbook deployapp.yaml --extra-vars TAG"
                  }
               }
 
