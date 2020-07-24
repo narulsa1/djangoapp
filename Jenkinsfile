@@ -24,6 +24,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pswd', usernameVariable: 'username')]) {
                        sh "docker login -u ${username} -p ${pswd}"
                        sh "docker tag djangoapp:${env.BUILD_NUMBER} snarula/djangoapp:${env.BUILD_NUMBER}"
+                       sh "docker push snarula/djangoapp:${env.BUILD_NUMBER}"
                        
                     }      
                  }
@@ -31,7 +32,7 @@ pipeline {
 
               stage('Ansible Run') {
                  steps{
-                         sh "ansible-playbook deployapp.yaml --extra-vars TAG"
+                         sh "ansible-playbook deployapp.yaml --extra-vars ${TAG}"
                  }
               }
 
