@@ -21,14 +21,14 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pswd', usernameVariable: 'username')]) {
                        sh "docker login -u ${username} -p ${pswd}"
                        sh "docker tag djangoapp:${env.BUILD_NUMBER} snarula/djangoapp:${env.BUILD_NUMBER}"
-                       sh "docker push snarula/djangoapp:${env.BUILD_NUMBER}"
+                       
                     }      
                  }
               }
 
-              stage('Docker container') {
+              stage('Ansible Run') {
                  steps{
-                 sh "docker run -itd -p 8000:8000 -e  DJANGO_SUPERUSER_USERNAME=admin -e DJANGO_SUPERUSER_PASSWORD=sekret1 -e DJANGO_SUPERUSER_EMAIL=admin@example.com djangoapp:${env.BUILD_NUMBER}"
+                 sh "ansible-playbook /root/ansible/deployapp.yaml -e "BUILD_NUMBER=${env.BUILD_NUMBER}""
                  }
               }
 
