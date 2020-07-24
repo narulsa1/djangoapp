@@ -31,7 +31,7 @@ pipeline {
 
               stage('Ansible Run') {
                  steps{
-                         sh "ansible-playbook /root/ansible/deployapp.yaml --extra-vars "TAG=${env.BUILD_NUMBER}""
+                         sh "ansible-playbook /root/ansible/deployapp.yaml --extra-vars TAG"
                  }
               }
 
