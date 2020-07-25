@@ -1,7 +1,5 @@
 pipeline {
-        environment {
-               Build = "${env.BUILD_NUMBER}"
-        }
+        
         agent any
 
         stages {
@@ -32,7 +30,7 @@ pipeline {
 
               stage('Ansible Run') {
                  steps{
-                         sh "ansible-playbook /var/lib/jenkins/deployapp.yaml --extra-vars TAG=$Build"
+                         sh "ansible-playbook /var/lib/jenkins/deployapp.yaml --extra-vars TAG=$BUILD_NUMBER"
                  }
               }
 
