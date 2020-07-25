@@ -32,7 +32,7 @@ pipeline {
 
               stage('Ansible Run') {
                  steps{
-                         sh "ansible-playbook /var/lib/jenkins/deployapp.yaml --extra-vars TAG=21"
+                         sh "ansible-playbook /var/lib/jenkins/deployapp.yaml --extra-vars TAG"
                  }
               }
 
